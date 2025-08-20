@@ -1,0 +1,6 @@
+"DESCRIPTION","DURATION IN MS","NAME","PARENT SUITE","START TIME","STATUS","STOP TIME","SUB SUITE","SUITE","TEST CLASS","TEST METHOD"
+"","14176","Erro de cadastro de usuario","Teste automatizado de cadastro","Wed Aug 20 15:58:00 BRT 2025","passed","Wed Aug 20 15:58:14 BRT 2025","","","",""
+"","14408","Deletar Conta de usuario","Teste automatizado de Deletar Conta","Wed Aug 20 15:58:44 BRT 2025","passed","Wed Aug 20 15:58:58 BRT 2025","","","",""
+"","6773","Erro Cadastro de usuario","Teste automatizado de erro cadastro","Wed Aug 20 15:58:16 BRT 2025","passed","Wed Aug 20 15:58:23 BRT 2025","","","",""
+"","9134","Login de usuario","Teste automatizado de Login","Wed Aug 20 15:58:24 BRT 2025","passed","Wed Aug 20 15:58:33 BRT 2025","","","",""
+"","8019","Erro no Login de usuario","Teste automatizado de Erro no Login","Wed Aug 20 15:58:34 BRT 2025","passed","Wed Aug 20 15:58:42 BRT 2025","","","",""
