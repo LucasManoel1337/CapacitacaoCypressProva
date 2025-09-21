@@ -1,19 +1,14 @@
-
 import { deletarConta } from "../support/usuario/deletarConta";
 import { validarURL } from "../support/util/validarURL";
-import { visitUrl } from "../support/util/visitURL";
-
-const URL = "https://www.automationexercise.com/";
-
-const email = "testelucas@gmail.com";
-const senha = "123456";
+import dadosLoginCadastroUsuario from "../fixtures/dadosLoginCadastroUsuario.json"
 
 describe('Teste automatizado de Deletar Conta', () => {
-
+    beforeEach(() => {
+        cy.visit('')
+        validarURL('https://www.automationexercise.com/');
+    });
+    
     it('Deletar Conta de usuario', () => {
-        visitUrl(URL);
-        validarURL(URL);
-        
-        deletarConta(email, senha);
+        deletarConta(dadosLoginCadastroUsuario.email, dadosLoginCadastroUsuario.senha);
     });
 });

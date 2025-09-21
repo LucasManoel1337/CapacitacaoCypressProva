@@ -1,19 +1,14 @@
 import { cadastrarUsuario } from "../support/usuario/cadastro";
 import { validarURL } from "../support/util/validarURL";
-import { visitUrl } from "../support/util/visitURL";
-
-const URL = "https://www.automationexercise.com/";
-
-const name = "Lucas";
-const email = "testelucas@gmail.com";
-const senha = "123456";
+import dadosLoginCadastroUsuario from "../fixtures/dadosLoginCadastroUsuario.json"
 
 describe('Teste automatizado de cadastro', () => {
+    beforeEach(() => {
+        cy.visit('')
+        validarURL('https://www.automationexercise.com/');
+    });
 
     it('Erro de cadastro de usuario', () => {
-        visitUrl(URL);
-        validarURL(URL);
-
-        cadastrarUsuario(name, email, senha);
+        cadastrarUsuario(dadosLoginCadastroUsuario.nome, dadosLoginCadastroUsuario.email, dadosLoginCadastroUsuario.senha);
     });
 });
