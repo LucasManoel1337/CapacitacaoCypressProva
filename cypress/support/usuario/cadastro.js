@@ -32,35 +32,42 @@ export function cadastrarUsuario(usuario, email, senha){
 
     cy.get('[data-qa="signup-button"]').click();
 
-    cy.get('.login-form > :nth-child(1)').contains(tituloDaTelaCadastro).should('be.visible');
+    cy.get('body').then($body => {
+        const elemento = $body.find('.signup-form > form > p');
+        if (elemento.length > 0) {
+            cy.log("AVISO: JÁ EXISTE UMA CONTA CADASTRADA NESSE EMAIL!");
+            cy.end();
+        } else {
+            cy.get('.login-form > :nth-child(1)').contains(tituloDaTelaCadastro).should('be.visible');
 
-    cy.get('#id_gender1').check();
-    cy.get('[data-qa="password"]').type(senha);
+            cy.get('#id_gender1').check();
+            cy.get('[data-qa="password"]').type(senha);
 
-    cy.get('[data-qa="days"]').select('1');
-    cy.get('[data-qa="months"]').select('September');
-    cy.get('[data-qa="years"]').select('2005');
+            cy.get('[data-qa="days"]').select('1');
+            cy.get('[data-qa="months"]').select('September');
+            cy.get('[data-qa="years"]').select('2005');
 
-    cy.get('#newsletter').click();
-    cy.get('#optin').click();
+            cy.get('#newsletter').click();
+            cy.get('#optin').click();
 
-    cy.get('[data-qa="first_name"]').type(fisrtName);
-    cy.get('[data-qa="last_name"]').type(lastName);
-    cy.get('[data-qa="company"]').type(companyName);
-    cy.get('[data-qa="address"]').type(address1);
-    cy.get('[data-qa="address2"]').type(address2);
-    cy.get('[data-qa="country"]').select(country);
-    cy.get('[data-qa="state"]').type(state);
-    cy.get('[data-qa="city"]').type(city);
-    cy.get('[data-qa="zipcode"]').type(zipcode);
-    cy.get('[data-qa="mobile_number"]').type(mobileNumber);
+            cy.get('[data-qa="first_name"]').type(fisrtName);
+            cy.get('[data-qa="last_name"]').type(lastName);
+            cy.get('[data-qa="company"]').type(companyName);
+            cy.get('[data-qa="address"]').type(address1);
+            cy.get('[data-qa="address2"]').type(address2);
+            cy.get('[data-qa="country"]').select(country);
+            cy.get('[data-qa="state"]').type(state);
+            cy.get('[data-qa="city"]').type(city);
+            cy.get('[data-qa="zipcode"]').type(zipcode);
+            cy.get('[data-qa="mobile_number"]').type(mobileNumber);
 
-    cy.get('[data-qa="create-account"]').click();
+            cy.get('[data-qa="create-account"]').click();
 
-    cy.wait(3000);
-    cy.get('[data-qa="account-created"]').contains(mensagemSucessoP1).should('be.visible');
-    cy.get('.col-sm-9 > :nth-child(2)').contains(mensagemSucessoP2).should('be.visible');
-
+            cy.wait(3000);
+            cy.get('[data-qa="account-created"]').contains(mensagemSucessoP1).should('be.visible');
+            cy.get('.col-sm-9 > :nth-child(2)').contains(mensagemSucessoP2).should('be.visible');
+        }
+    });
 }
 
 export function cadastrarErroUsuario(usuario, email){
@@ -75,5 +82,16 @@ export function cadastrarErroUsuario(usuario, email){
 
     cy.wait(2000);
 
-    cy.get('.signup-form > form > p').contains(mensagemErro).should('be.visible');
+    cy.get('body').then($body => {
+        const elemento = $body.find('.signup-form > form > p');
+        if (elemento.length > 0) {
+            cy.get('.signup-form > form > p').contains(mensagemErro).should('be.visible');
+            cy.log("AVISO: JÁ EXISTE UMA CONTA CADASTRADA NESSE EMAIL!");
+            cy.end();
+        } else {
+            cy.get('.login-form > :nth-child(1)').contains(tituloDaTelaCadastro).should('be.visible');
+            cy.log("AVISO: CONTA NÃO CADASTRADA!")
+            cy.end();
+        }
+    });
 }

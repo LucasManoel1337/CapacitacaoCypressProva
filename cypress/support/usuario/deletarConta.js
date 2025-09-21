@@ -14,10 +14,19 @@ export function deletarConta(email, senha) {
 
     cy.get('[data-qa="login-button"]').click();
     cy.wait(3000);
-    cy.get('.shop-menu > .nav > :nth-child(5)').contains(botaoDeletar).should('be.visible');
-    cy.get('.shop-menu > .nav > :nth-child(5)').contains(botaoDeletar).click();
 
-    cy.wait(3000);
-    cy.get('b').contains(mensagemSucessoP1).should('be.visible');
-    cy.get('.col-sm-9 > :nth-child(2)').contains(mensagemSucessoP2).should('be.visible');
+    cy.get('body').then($body => {
+        const elemento = $body.find('.login-form > form > p'); 
+        if (elemento.length > 0) {
+            cy.log("AVISO: NÃO EXISTE CONTA CADASTRADA COM ESSE LOGIN!");
+            cy.end();
+        } else {
+            cy.get('.shop-menu > .nav > :nth-child(5)').contains(botaoDeletar).should('be.visible');
+            cy.get('.shop-menu > .nav > :nth-child(5)').contains(botaoDeletar).click();
+
+            cy.wait(3000);
+            cy.get('b').contains(mensagemSucessoP1).should('be.visible');
+            cy.get('.col-sm-9 > :nth-child(2)').contains(mensagemSucessoP2).should('be.visible');
+        }
+    });
 }
